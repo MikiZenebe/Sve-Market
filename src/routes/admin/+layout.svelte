@@ -49,10 +49,10 @@
 						{#each items as item (item.title)}
 							<Sidebar.MenuItem>
 								<Sidebar.MenuButton
-									class=" from-[#ffa181] to-[#f8551f]  hover:bg-gradient-to-l hover:text-white"
+									class=" from-[#ffa181] to-[#f8551f]  transition-all duration-300 ease-in-out hover:bg-gradient-to-l hover:text-white hover:shadow-lg hover:transition-all"
 								>
 									{#snippet child({ props })}
-										<a href={item.url} {...props}>
+										<a href={`/admin/${item.url}`} {...props}>
 											<item.icon />
 											<span>{item.title}</span>
 										</a>
@@ -66,8 +66,15 @@
 		</Sidebar.Content>
 	</Sidebar.Root>
 
-	<main class="flex-1">
-		<Sidebar.Trigger />
+	<main class="relative flex-1">
 		{@render children?.()}
+		<div class="absolute bottom-6 left-1/2 -translate-x-1/2">
+			<Sidebar.Trigger
+				class="cursor-pointer rounded-full bg-gradient-to-r from-[#ffa181] to-[#f8551f] p-4 text-white shadow-lg 
+                   transition-all duration-300 ease-in-out
+                   hover:scale-110 hover:from-[#f8551f] hover:to-[#ffa181] hover:shadow-2xl 
+                   active:scale-95"
+			/>
+		</div>
 	</main>
 </Sidebar.Provider>
